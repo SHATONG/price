@@ -6,20 +6,25 @@ require_once '../util/functions.php';
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default"/>
-    <title>价格监控</title>
+    <title>所有商品信息</title>
 </head>
 <body>
 <div id="page-top-outer">
+
     <!-- Start: page-top -->
     <div id="page-top">
+
         <!-- start logo -->
         <div id="logo">
-            <a href="http://monitor.usau-buy.me/"><h1 style="color: #fff; font-size: 35px">欢迎使用，<?php session_start();
+            <a href="http://monitor.usau-buy.me/"><h1 style="color: #fff; font-size: 35px">欢迎您！<?php session_start();
                     echo $_SESSION['name'] ?></h1></a>
         </div>
+
         <div class="clear"></div>
+
     </div>
     <!-- End: page-top -->
+
 </div>
 <div class="nav-outer-repeat">
     <!--  start nav-outer -->
@@ -78,31 +83,6 @@ require_once '../util/functions.php';
                         <!--[if lte IE 6]></td></tr></table></a><![endif]-->
                     </li>
                 </ul>
-                <?php
-                $user_id = $_SESSION['id'];
-                if ($user_id == 1 || $user_id == 2) {
-                    echo '<div class="nav-divider">&nbsp;</div>
-                    <ul class="select">
-                        <li><a href="allusers.php"><b>用户管理</b><!--[if IE 7]><!--></a><!--<![endif]-->
-                            <!--[if lte IE 6]>
-                            <table>
-                                <tr>
-                                    <td><![endif]-->
-                            <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-                        </li>
-                    </ul>
-                    <div class="nav-divider">&nbsp;</div>
-                    <ul class="select">
-                        <li><a href="allproducts.php"><b>商品管理</b><!--[if IE 7]><!--></a><!--<![endif]-->
-                            <!--[if lte IE 6]>
-                            <table>
-                                <tr>
-                                    <td><![endif]-->
-                            <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-                        </li>
-                    </ul>';
-                }
-                ?>
                 <div class="nav-divider">&nbsp;</div>
                 <div class="clear"></div>
             </div>
@@ -115,7 +95,7 @@ require_once '../util/functions.php';
 <div id="content-outer">
     <!-- start content -->
     <div id="content">
-        <h1 style="color: #1a1a1a; padding: 10px 0 20px 20px; font-size: 25px">价格监控（新添加商品的名称与价格会延迟显示，不影响监控）</h1>
+        <h1 style="color: #1a1a1a; padding: 10px 0 20px 20px; font-size: 25px">所有商品信息</h1>
         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
             <tr>
                 <td></td>
@@ -130,6 +110,7 @@ require_once '../util/functions.php';
                 <th rowspan="3" class="sized"><img src="../images/shared/side_shadowright.jpg" width="20"
                                                    height="300"
                                                    alt=""/></th>
+
             </tr>
             <tr>
                 <td id="tbl-border-left"></td>
@@ -153,7 +134,7 @@ require_once '../util/functions.php';
                                     </tr>
                                     <?php
                                     connectDB();
-                                    $result = mysql_query("SELECT * FROM monitor where user_id = $user_id");
+                                    $result = mysql_query("SELECT * FROM monitor");
                                     $data_count = mysql_num_rows($result);
                                     for ($i = 0; $i < $data_count; $i++) {
                                         $result_arr = mysql_fetch_assoc($result);
@@ -193,7 +174,7 @@ require_once '../util/functions.php';
     <!--  end content-table-inner ............................................END  -->
     </td>
     <tr>
-    <td id="tbl-border-right"></td>
+        <td id="tbl-border-right"></td>
     </tr>
     <tr>
         <th class="sized bottomleft"></th>
@@ -210,7 +191,7 @@ require_once '../util/functions.php';
 <div id="footer">
     <!--  start footer-left -->
     <div id="footer-left">
-        &copy; Copyright By ShaTong, Zhendong Yang. <span id="spanYear"></span> <a href="http://monitor.usau-buy.me/"></a> All rights
+        &copy; Copyright BY ShaTong. <span id="spanYear"></span> <a href="http://jd.usau-buy.me/"></a>. All rights
         reserved.
     </div>
     <!--  end footer-left -->
@@ -218,3 +199,4 @@ require_once '../util/functions.php';
 </div>
 </body>
 </html>
+

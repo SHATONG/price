@@ -8,7 +8,7 @@ require_once '../util/functions.php';
     <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default"/>
     <title>添加监控商品</title>
 </head>
-<body background="../images/bg-admin.jpg">
+<body>
 <div id="page-top-outer">
 
     <!-- Start: page-top -->

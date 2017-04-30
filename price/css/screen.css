@@ -841,7 +841,7 @@ font-family: Tahoma;
 	}
 .nav-outer-repeat	{
 	background: url(../images/shared/nav/repeat.jpg) repeat-x;
-	height: 38px;
+	height: 76px;
 	}
 .nav-outer	{
 	margin: 0 auto;
@@ -930,11 +930,10 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
 
 .nav	{
 	float: left;
-	font-family: Tahoma;
 	font-size: 13px;
 	height: 38px;
 	position: relative;
-	width: 600px;
+	width: 660px;
 	min-width: 600px;
 	z-index: 500;
 	}
