@@ -157,7 +157,7 @@ require_once '../util/functions.php';
                                         $note = $result_arr['note'];
                                         $status == 0?($statusCode =  '<span style="color: red">尚未监控</span>'):($statusCode = '<span style="color: green">正在监控</span>');
                                         $user_price = $result_arr['user_price'];
-                                        echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
+                                        echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'style="text-decoration: none;">$item_name</a></td><td>$mall_name</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
                                               <td><a href='editProduct.php?id=$id'>修改</a>
                                               |<a href='deleteProduct.php?id=$id'>删除</a></td><td>$note</td>
                                               <td><a href=\"switch.php?status=1&&id=$id\" class=\"icon-5 info-tooltip\"></a><a href=\"switch.php?status=0&&id=$id\" class=\"icon-2 info-tooltip\"></a></td></tr>";

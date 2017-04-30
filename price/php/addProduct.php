@@ -128,7 +128,7 @@ require_once '../util/functions.php';
                                             <th valign="top">商品ID:</th>
                                             <td><input type="text" class="inp-form" name="item_id"/></td>
                                             <td>
-
+					  <a href="../images/jd_id.jpg">找不到商品ID？</a>
                                             </td>
                                         </tr>
                                         <tr>

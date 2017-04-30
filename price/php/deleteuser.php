@@ -21,5 +21,5 @@ mysql_query("DELETE FROM user WHERE user_id = $id");
 if (mysql_errno()){
     die("delete failed");
 }else{
-    header("Location:../result/adminDeleteSuccess.php");
+    header("Location:../php/allusers.php");
 }
