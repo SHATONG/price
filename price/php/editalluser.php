@@ -47,7 +47,7 @@ if (!empty($_GET['id'])) {
         <!-- start nav-right -->
         <div id="nav-right">
             <div class="nav-divider">&nbsp;</div>
-            <a href="../index.html" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64" height="14"
+            <a href="../index.php" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64" height="14"
                                                      alt=""/></a>
             <div class="nav-divider">&nbsp;</div>
             <div class="clear">&nbsp;</div>

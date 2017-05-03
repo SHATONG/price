@@ -47,7 +47,7 @@
         </div>
         <!--  end login-inner -->
         <div class="clear"></div>
-        <a href="../index.html" class="forgot-pwd">已有帐号?</a>
+        <a href="../index.php" class="forgot-pwd">已有帐号?</a>
     </div>
     <!--  end loginbox -->
 </div>

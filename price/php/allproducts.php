@@ -6,8 +6,15 @@ require_once '../util/functions.php';
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default"/>
+    <script src="../js/jquery-1.4.4.js"></script>
     <title>所有商品信息</title>
 </head>
+<script>
+    $(function () {
+            $("#product-table tr:nth-child(odd)").addClass("trOdd");
+        }
+    )
+</script>
 <body>
 <div id="page-top-outer">
 
@@ -32,7 +39,7 @@ require_once '../util/functions.php';
         <!-- start nav-right -->
         <div id="nav-right">
             <div class="nav-divider">&nbsp;</div>
-            <a href="../index.html" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64"
+            <a href="../index.php" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64"
                                                      height="14"
                                                      alt=""/></a>
             <div class="nav-divider">&nbsp;</div>
@@ -129,12 +136,13 @@ require_once '../util/functions.php';
                                         <th class="table-header-repeat line-left minwidth-1">预期价格</th>
                                         <th class="table-header-repeat line-left minwidth-1">监控状态</th>
                                         <th class="table-header-repeat line-left minwidth-1">监控管理</th>
+                                        <th class="table-header-repeat line-left minwidth-1">监控用户</th>
                                         <th class="table-header-repeat line-left minwidth-1">备注</th>
                                         <th class="table-header-repeat line-left minwidth-1">监控开关</th>
                                     </tr>
                                     <?php
                                     connectDB();
-                                    $result = mysql_query("SELECT * FROM monitor");
+                                    $result = mysql_query("SELECT * FROM monitor ");
                                     $data_count = mysql_num_rows($result);
                                     for ($i = 0; $i < $data_count; $i++) {
                                         $result_arr = mysql_fetch_assoc($result);
@@ -144,13 +152,16 @@ require_once '../util/functions.php';
                                         $mall_name = $result_arr['mall_name'];
                                         $item_price = $result_arr['item_price'];
                                         $user_id = $result_arr['user_id'];
+                                        $user_result = mysql_query("SELECT * FROM user WHERE user_id = $user_id");
+                                        $user_result_arr = mysql_fetch_assoc($user_result);
+                                        $user_name = $user_result_arr['user_name'];
                                         $status = $result_arr['status'];
                                         $note = $result_arr['note'];
-                                        $status == 0?($statusCode =  '<span style="color: red">尚未监控</span>'):($statusCode = '<span style="color: green">正在监控</span>');
+                                        $status == 0 ? ($statusCode = '<span style="color: red">尚未监控</span>') : ($statusCode = '<span style="color: green">正在监控</span>');
                                         $user_price = $result_arr['user_price'];
                                         echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
                                               <td><a href='editProduct.php?id=$id'>修改</a>
-                                              |<a href='deleteProduct.php?id=$id'>删除</a></td><td>$note</td>
+                                              |<a href='deleteProduct.php?id=$id'>删除</a></td><td>$user_name</td><td>$note</td>
                                               <td><a href=\"switch.php?status=1&&id=$id\" class=\"icon-5 info-tooltip\"></a><a href=\"switch.php?status=0&&id=$id\" class=\"icon-2 info-tooltip\"></a></td></tr>";
                                     }
                                     ?>

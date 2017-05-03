@@ -28,7 +28,7 @@
                 <tr>
                     <th style="height: 50px;font-size: 15px;color: white">现在去登录</th>
                     <td>
-                    <a href="../index.html"
+                    <a href="../index.php"
                            class="sbm_btn"">GO</a></td>
                 </tr>
             </table>

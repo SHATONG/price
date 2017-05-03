@@ -15,13 +15,13 @@ if (empty($_GET['username'])) {
     echo "<script> 
                 alert('用户名不能为空哦！');
           </script>";
-    header("Location:../index.html");
+    header("Location:../index.php");
 }
 if (empty($_GET['password'])) {
     echo "<script> 
                 alert('密码不能为空！');
           </script>";
-    header("Location:../index.html");
+    header("Location:../index.php");
 
 }
 
@@ -43,12 +43,12 @@ if ($result_count != 0) {
     echo "<script> 
                 alert('用户名或密码错误！');
           </script>";
-    header("Location:../index.html");
+    header("Location:../index.php");
 }
 //注销登录
 if ($_GET['action'] == "logout") {
     unset($_SESSION['id']);
     unset($_SESSION['name']);
-    header("Location:../index.html");
+    header("Location:../index.php");
 }
 

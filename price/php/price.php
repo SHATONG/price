@@ -1,6 +1,16 @@
 <?php
 require_once '../util/functions.php';
-?>
+session_start();
+$user_id = $_SESSION['id'];
+connectDB();
+        $result_all = mysql_query("SELECT * FROM monitor where user_id = $user_id");
+		$result_onMonitor = mysql_query("SELECT * FROM monitor where user_id = $user_id and status = 1");
+		$result_offMonitor = mysql_query("SELECT * FROM monitor where user_id = $user_id and status = 0");
+        $data_count = mysql_num_rows($result_all);
+		$onMonitor_count = mysql_num_rows($result_onMonitor);
+		$offMonitor_count = mysql_num_rows($result_offMonitor);
+		?>
+			
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +24,7 @@ require_once '../util/functions.php';
     <div id="page-top">
         <!-- start logo -->
         <div id="logo">
-            <a href="http://monitor.usau-buy.me/"><h1 style="color: #fff; font-size: 35px">欢迎使用，<?php session_start();
+            <a href="http://monitor.usau-buy.me/"><h1 style="color: #fff; font-size: 35px">欢迎使用,<?php 
                     echo $_SESSION['name'] ?></h1></a>
         </div>
         <div class="clear"></div>
@@ -27,9 +37,10 @@ require_once '../util/functions.php';
         <!-- start nav-right -->
         <div id="nav-right">
             <div class="nav-divider">&nbsp;</div>
-            <a href="../index.html" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64"
+            <a href="../index.php" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64"
                                                      height="14"
                                                      alt=""/></a>
+
             <div class="nav-divider">&nbsp;</div>
             <div class="clear">&nbsp;</div>
         </div>
@@ -79,7 +90,7 @@ require_once '../util/functions.php';
                     </li>
                 </ul>
                 <?php
-                $user_id = $_SESSION['id'];
+                
                 if ($user_id == 1 || $user_id == 2) {
                     echo '<div class="nav-divider">&nbsp;</div>
                     <ul class="select">
@@ -115,7 +126,8 @@ require_once '../util/functions.php';
 <div id="content-outer">
     <!-- start content -->
     <div id="content">
-        <h1 style="color: #1a1a1a; padding: 10px 0 20px 20px; font-size: 25px">价格监控（新添加商品的名称与价格会延迟显示，不影响监控）</h1>
+        <h1 style="color: #1a1a1a; padding: 10px 0 20px 20px; font-size: 25px">价格监控（共<?php echo $data_count;?>件商品,正在监控：<?php echo $onMonitor_count;?>件,尚未监控：<?php echo $offMonitor_count;?>件）</h1>
+		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（新添加商品的名称与商品价格会延迟显示，不影响监控！）</h3>
         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
             <tr>
                 <td></td>
@@ -152,26 +164,27 @@ require_once '../util/functions.php';
                                         <th class="table-header-repeat line-left minwidth-1">监控开关</th>
                                     </tr>
                                     <?php
-                                    connectDB();
-                                    $result = mysql_query("SELECT * FROM monitor where user_id = $user_id");
-                                    $data_count = mysql_num_rows($result);
-                                    for ($i = 0; $i < $data_count; $i++) {
-                                        $result_arr = mysql_fetch_assoc($result);
-                                        $id = $result_arr['id'];
-                                        $item_id = $result_arr['item_id'];
-                                        $item_name = $result_arr['item_name'];
-                                        $mall_name = $result_arr['mall_name'];
-                                        $item_price = $result_arr['item_price'];
-                                        $user_id = $result_arr['user_id'];
-                                        $status = $result_arr['status'];
-                                        $note = $result_arr['note'];
-                                        $status == 0?($statusCode =  '<span style="color: red">尚未监控</span>'):($statusCode = '<span style="color: green">正在监控</span>');
-                                        $user_price = $result_arr['user_price'];
-                                        echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
-                                              <td><a href='editProduct.php?id=$id'>修改</a>
-                                              |<a href='deleteProduct.php?id=$id'>删除</a></td><td>$note</td>
-                                              <td><a href=\"switch.php?status=1&&id=$id\" class=\"icon-5 info-tooltip\"></a><a href=\"switch.php?status=0&&id=$id\" class=\"icon-2 info-tooltip\"></a></td></tr>";
-                                    }
+									if($data_count==0){
+										echo"<tr><td colspan='9' style='text-align:center; color:red; font-size:20px;'>您还没有监控任何商品，快去添加吧！(^-^)</td></tr>";
+									}else{
+										for ($i = 0; $i < $data_count; $i++) {
+											$result_arr = mysql_fetch_assoc($result_all);
+											$id = $result_arr['id'];
+											$item_id = $result_arr['item_id'];
+											$item_name = $result_arr['item_name'];
+											$mall_name = $result_arr['mall_name'];
+											$item_price = $result_arr['item_price'];
+											$user_id = $result_arr['user_id'];
+											$status = $result_arr['status'];
+											$note = $result_arr['note'];
+											$status == 0?($statusCode =  '<span style="color: red">尚未监控</span>'):($statusCode = '<span style="color: green">正在监控</span>');
+											$user_price = $result_arr['user_price'];
+											echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
+												  <td><a href='editProduct.php?id=$id'>修改</a>
+												  |<a href='deleteProduct.php?id=$id'>删除</a></td><td>$note</td>
+												  <td><a href=\"switch.php?status=1&&id=$id\" class=\"icon-5 info-tooltip\"></a><a href=\"switch.php?status=0&&id=$id\" class=\"icon-2 info-tooltip\"></a></td></tr>";
+										}
+									}
                                     ?>
                                 </table>
                                 <!--  end product-table................................... -->
