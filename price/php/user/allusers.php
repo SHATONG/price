@@ -126,6 +126,7 @@ require_once '../../util/functions.php';
                                         <th class="table-header-repeat line-left minwidth-1">用户名</th>
                                         <th class="table-header-repeat line-left minwidth-1">密码</th>
                                         <th class="table-header-repeat line-left minwidth-1">邮箱</th>
+                                        <th class="table-header-repeat line-left minwidth-1">注册时间</th>
                                         <th class="table-header-repeat line-left minwidth-1">操作</th>
                                     </tr>
                                     <?php
@@ -138,7 +139,8 @@ require_once '../../util/functions.php';
                                         $name = $result_arr['user_name'];
                                         $pw = $result_arr['user_pwd'];
                                         $email = $result_arr['user_email'];
-                                        echo "<tr><td>$id</td><td>$name</td><td>$pw</td><td>$email</td>
+                                        $register_date = $result_arr['register_date'];
+                                        echo "<tr><td>$id</td><td>$name</td><td>$pw</td><td>$email</td><td>$register_date</td>
                           <td><a href='editalluser.php?id=$id'>修改</a>
                           |<a href='deleteuser.php?id=$id'>删除</a></td></tr>";
                                     }
