@@ -1,14 +1,14 @@
 <?php
-require_once '../util/functions.php';
+require_once '../../util/functions.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default"/>
+    <link rel="stylesheet" href="../../css/screen.css" type="text/css" media="screen" title="default"/>
     <title>价格监控</title>
 </head>
-<body background="../images/bg-admin.jpg">
+<body>
 <div id="page-top-outer">
 
     <!-- Start: page-top -->
@@ -16,7 +16,7 @@ require_once '../util/functions.php';
 
         <!-- start logo -->
         <div id="logo">
-            <a href="http://jd.usau-buy.me/"><h1 style="color: #fff; font-size: 35px">欢迎您！<?php session_start();
+            <a href="http://monitor.usau-buy.me/"><h1 style="color: #fff; font-size: 35px">欢迎您！<?php session_start();
                     echo $_SESSION['name'] ?></h1></a>
         </div>
 
@@ -32,8 +32,8 @@ require_once '../util/functions.php';
         <!-- start nav-right -->
         <div id="nav-right">
             <div class="nav-divider">&nbsp;</div>
-            <a href="../index.php" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64" height="14"
-                                                     alt=""/></a>
+            <a href="../../index.php" id="logout"><img src="../../images/shared/nav/nav_logout.gif" width="64" height="14"
+                                                       alt=""/></a>
             <div class="nav-divider">&nbsp;</div>
             <div class="clear">&nbsp;</div>
         </div>
@@ -43,7 +43,7 @@ require_once '../util/functions.php';
 
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/price.php"><b>价格监控</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../monitor/price.php"><b>价格监控</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -54,27 +54,7 @@ require_once '../util/functions.php';
 
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
-                        <!--[if lte IE 6]>
-                        <table>
-                            <tr>
-                                <td><![endif]-->
-                        <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-                    </li>
-                </ul>
-<!--                <div class="nav-divider">&nbsp;</div>-->
-<!--                <ul class="select">-->
-<!--                    <li><a href="../php/editProduct.php"><b>编辑商品</b><!--[if IE 7]><!--></a><!--<![endif]-->-->
-<!--                        <!--[if lte IE 6]>-->
-<!--                        <table>-->
-<!--                            <tr>-->
-<!--                                <td><![endif]-->-->
-<!--                        <!--[if lte IE 6]></td></tr></table></a><![endif]-->-->
-<!--                    </li>-->
-<!--                </ul>-->
-                <div class="nav-divider">&nbsp;</div>
-                <ul class="select">
-                    <li><a href="../php/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../product/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -84,7 +64,17 @@ require_once '../util/functions.php';
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../user/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                        <!--[if lte IE 6]>
+                        <table>
+                            <tr>
+                                <td><![endif]-->
+                        <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+                    </li>
+                </ul>
+                <div class="nav-divider">&nbsp;</div>
+                <ul class="select">
+                    <li><a href="about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -110,12 +100,12 @@ require_once '../util/functions.php';
                 <td></td>
             </tr>
             <tr>
-                <th rowspan="3" class="sized"><img src="../images/shared/side_shadowleft.jpg" width="20" height="300"
+                <th rowspan="3" class="sized"><img src="../../images/shared/side_shadowleft.jpg" width="20" height="300"
                                                    alt=""/></th>
                 <th class="topleft"></th>
                 <td id="tbl-border-top">&nbsp;</td>
                 <th class="topright"></th>
-                <th rowspan="3" class="sized"><img src="../images/shared/side_shadowright.jpg" width="20" height="300"
+                <th rowspan="3" class="sized"><img src="../../images/shared/side_shadowright.jpg" width="20" height="300"
                                                    alt=""/></th>
 
             </tr>
@@ -166,7 +156,7 @@ require_once '../util/functions.php';
 <div id="footer">
     <!--  start footer-left -->
     <div id="footer-left">
-        &copy; Copyright By ShaTong, Zhendong Yang.<span id="spanYear"></span> <a href="http://jd.usau-buy.me/"></a> All rights
+        &copy; Copyright By ShaTong, Zhendong Yang.<span id="spanYear"></span> <a href="http://monitor.usau-buy.me/"></a> All rights
         reserved.
     </div>
     <!--  end footer-left -->

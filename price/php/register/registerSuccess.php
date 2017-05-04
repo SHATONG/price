@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>注册成功</title>
-    <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default" />
+    <link rel="stylesheet" href="../../css/screen.css" type="text/css" media="screen" title="default" />
 </head>
 <body id="login-bg">
 
@@ -28,7 +28,7 @@
                 <tr>
                     <th style="height: 50px;font-size: 15px;color: white">现在去登录</th>
                     <td>
-                    <a href="../index.php"
+                    <a href="../../index.php"
                            class="sbm_btn"">GO</a></td>
                 </tr>
             </table>

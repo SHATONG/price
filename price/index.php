@@ -1,54 +1,36 @@
 <?php
 require_once 'util/functions.php';
-session_start();
-$session    = session_id();
-$time       = time();
-$time_check = $time-300;     //We Have Set Time 5 Minutes
-$tbl_name = 'online_users';
-connectDB();
-$sql   = "SELECT * FROM $tbl_name WHERE session='$session'"; 
-$result=mysql_query($sql);
-$count = mysql_num_rows($result);
-//If count is 0 , then enter the values
-if($count=="0"){
-    $sql1    = "INSERT INTO $tbl_name(session, time)VALUES('$session', '$time')";
-    $result1 = mysql_query($sql1);
-}
-// else update the values
-else {
-    $sql2    = "UPDATE $tbl_name SET time='$time' WHERE session = '$session'";
-    $result2 = mysql_query($sql2);
-}
-$sql3 = "SELECT * FROM $tbl_name";
-$result3 = mysql_query($sql3);
-$count_user_online = mysql_num_rows($result3);
-//echo "<h1>当前在线人数 : $count_user_online </h1>";
-// after 5 minutes, session will be deleted
-$sql4 = "DELETE FROM $tbl_name WHERE time<$time_check";
-$result4 = mysql_query($sql4);
-$product_num = mysql_num_rows(mysql_query("SELECT * FROM monitor where status = '1'"));
-mysql_close();
+require_once 'php/monitor/online.php';
 ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>电商价格监控系统</title>
-        <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default"/>
-    </head>
-    <body id="login-bg">
-    <div id="online_users">
-        <h1 style="font-size: 15px;color: #fff;"><?php echo '当前在线人数：'.$count_user_online ;?></h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>电商价格监控系统</title>
+    <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default"/>
+    <script type="text/javascript" src="js/user.js"></script>
+</head>
+<body id="login-bg" onload="getLangDate()">
+<div id="online_users">
+    <h1 style="font-size: 15px;color: #fff;">&nbsp;</h1>
 </div>
-<div id="products">
-    <h1 style="font-size: 15px;color: #fff;"><?php echo '当前监控商品：'.$product_num;?></h1>
+<div>
+    <h1 id="online_users"><?php echo '当前在线人数：' . onlineUsers(); ?></h1>
 </div>
+<div>
+    <h1 id="products"><?php echo '当前监控商品：' . monitorProducts(); ?></h1>
+</div>
+<div>
+    <h1 id="dateStr">时间载入中...</h1>
+</div>
+
 <!-- Start: login-holder -->
 <div id="login-holder">
 
     <!-- start logo -->
     <div id="logo-login">
         <h1 style="font-size: 25px;color: #fff;">电商价格监控系统</h1>
+
     </div>
     <!-- end logo -->
 
@@ -59,7 +41,7 @@ mysql_close();
 
         <!--  start login-inner -->
         <div id="login-inner">
-            <form name="formLogin" action="php/login.php" method="get">
+            <form name="formLogin" action="php/login/login.php" method="post">
                 <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <th>用户名</th>
@@ -77,14 +59,14 @@ mysql_close();
                     <tr>
                         <th></th>
                         <td><input type="button" class="submit-login" onclick="document.formLogin.submit();"/></td>
-                        <td><a href="php/register.php"><input type="button" class="submit-reg"/></a></td>
+                        <td><a href="php/register/register.php"><input type="button" class="submit-reg"/></a></td>
                     </tr>
                 </table>
             </form>
         </div>
         <!--  end login-inner -->
         <div class="clear"></div>
-        <a href="" class="forgot-pwd">忘记密码?</a>
+        <a href="php/forgetPwd/forgetPwd.php" class="forgot-pwd">忘记密码?</a>
     </div>
     <!--  end loginbox -->
 </div>

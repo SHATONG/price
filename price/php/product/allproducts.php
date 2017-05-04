@@ -1,13 +1,20 @@
 <?php
-require_once '../util/functions.php';
+require_once '../../util/functions.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default"/>
-    <title>所有用户信息</title>
+    <link rel="stylesheet" href="../../css/screen.css" type="text/css" media="screen" title="default"/>
+    <script src="../../js/jquery-1.4.4.js"></script>
+    <title>所有商品信息</title>
 </head>
+<script>
+    $(function () {
+            $("#product-table tr:nth-child(odd)").addClass("trOdd");
+        }
+    )
+</script>
 <body>
 <div id="page-top-outer">
 
@@ -32,7 +39,7 @@ require_once '../util/functions.php';
         <!-- start nav-right -->
         <div id="nav-right">
             <div class="nav-divider">&nbsp;</div>
-            <a href="../index.php" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64"
+            <a href="../../index.php" id="logout"><img src="../../images/shared/nav/nav_logout.gif" width="64"
                                                      height="14"
                                                      alt=""/></a>
             <div class="nav-divider">&nbsp;</div>
@@ -44,7 +51,7 @@ require_once '../util/functions.php';
 
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/price.php"><b>价格监控</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../monitor/price.php"><b>价格监控</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -55,7 +62,7 @@ require_once '../util/functions.php';
 
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../product/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -65,7 +72,7 @@ require_once '../util/functions.php';
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../user/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -75,7 +82,7 @@ require_once '../util/functions.php';
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../about/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -95,19 +102,19 @@ require_once '../util/functions.php';
 <div id="content-outer">
     <!-- start content -->
     <div id="content">
-        <h1 style="color: #1a1a1a; padding: 10px 0 20px 20px; font-size: 25px">所有用户信息</h1>
+        <h1 style="color: #1a1a1a; padding: 10px 0 20px 20px; font-size: 25px">所有商品信息</h1>
         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
             <tr>
                 <td></td>
             </tr>
             <tr>
-                <th rowspan="3" class="sized"><img src="../images/shared/side_shadowleft.jpg" width="20"
+                <th rowspan="3" class="sized"><img src="../../images/shared/side_shadowleft.jpg" width="20"
                                                    height="300"
                                                    alt=""/></th>
                 <th class="topleft"></th>
                 <td id="tbl-border-top">&nbsp;</td>
                 <th class="topright"></th>
-                <th rowspan="3" class="sized"><img src="../images/shared/side_shadowright.jpg" width="20"
+                <th rowspan="3" class="sized"><img src="../../images/shared/side_shadowright.jpg" width="20"
                                                    height="300"
                                                    alt=""/></th>
 
@@ -122,25 +129,40 @@ require_once '../util/functions.php';
                             <form id="mainform" action="">
                                 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
                                     <tr>
-                                        <th class="table-header-repeat line-left minwidth-1">ID</th>
-                                        <th class="table-header-repeat line-left minwidth-1">用户名</th>
-                                        <th class="table-header-repeat line-left minwidth-1">密码</th>
-                                        <th class="table-header-repeat line-left minwidth-1">邮箱</th>
-                                        <th class="table-header-repeat line-left minwidth-1">操作</th>
+                                        <th class="table-header-repeat line-left minwidth-1">商品ID</th>
+                                        <th class="table-header-repeat line-left minwidth-1">商品名称</th>
+                                        <th class="table-header-repeat line-left minwidth-1">商城名称</th>
+                                        <th class="table-header-repeat line-left minwidth-1">商品价格</th>
+                                        <th class="table-header-repeat line-left minwidth-1">预期价格</th>
+                                        <th class="table-header-repeat line-left minwidth-1">监控状态</th>
+                                        <th class="table-header-repeat line-left minwidth-1">监控管理</th>
+                                        <th class="table-header-repeat line-left minwidth-1">监控用户</th>
+                                        <th class="table-header-repeat line-left minwidth-1">备注</th>
+                                        <th class="table-header-repeat line-left minwidth-1">监控开关</th>
                                     </tr>
                                     <?php
                                     connectDB();
-                                    $result = mysql_query("SELECT * FROM user");
+                                    $result = mysql_query("SELECT * FROM monitor ");
                                     $data_count = mysql_num_rows($result);
                                     for ($i = 0; $i < $data_count; $i++) {
                                         $result_arr = mysql_fetch_assoc($result);
-                                        $id = $result_arr['user_id'];
-                                        $name = $result_arr['user_name'];
-                                        $pw = $result_arr['user_pwd'];
-                                        $email = $result_arr['user_email'];
-                                        echo "<tr><td>$id</td><td>$name</td><td>$pw</td><td>$email</td>
-                          <td><a href='editalluser.php?id=$id'>修改</a>
-                          |<a href='deleteuser.php?id=$id'>删除</a></td></tr>";
+                                        $id = $result_arr['id'];
+                                        $item_id = $result_arr['item_id'];
+                                        $item_name = $result_arr['item_name'];
+                                        $mall_name = $result_arr['mall_name'];
+                                        $item_price = $result_arr['item_price'];
+                                        $user_id = $result_arr['user_id'];
+                                        $user_result = mysql_query("SELECT * FROM user WHERE user_id = $user_id");
+                                        $user_result_arr = mysql_fetch_assoc($user_result);
+                                        $user_name = $user_result_arr['user_name'];
+                                        $status = $result_arr['status'];
+                                        $note = $result_arr['note'];
+                                        $status == 0 ? ($statusCode = '<span style="color: red">尚未监控</span>') : ($statusCode = '<span style="color: green">正在监控</span>');
+                                        $user_price = $result_arr['user_price'];
+                                        echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
+                                              <td><a href='editProduct.php?id=$id'>修改</a>
+                                              |<a href='deleteProduct.php?id=$id'>删除</a></td><td>$user_name</td><td>$note</td>
+                                              <td><a href=\"../product/monitorSwitch.php?status=1&&id=$id&&auth=1\" class=\"icon-5 info-tooltip\"></a><a href=\"../product/monitorSwitch.php?status=0&&id=$id&&auth=1\" class=\"icon-2 info-tooltip\"></a></td></tr>";
                                     }
                                     ?>
                                 </table>

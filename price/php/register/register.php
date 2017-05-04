@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>注册</title>
-    <link rel="stylesheet" href="../css/register.css" type="text/css" media="screen" title="default" />
-    <script type="text/javascript" src="../js/jquery-1.4.4.js"></script>
-    <script type="text/javascript" src="../js/user.js"></script>
+    <link rel="stylesheet" href="../../css/register.css" type="text/css" media="screen" title="default" />
+    <script type="text/javascript" src="../../js/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="../../js/user.js"></script>
 </head>
 <body id="login-bg">
 
@@ -23,7 +23,7 @@
     <div id="loginbox">
         <!--  start login-inner -->
         <div id="login-inner">
-            <form method="get" action="register_server.php" name="formRegister">
+            <form method="post" action="register_server.php" id="formRegister">
                 <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <th>用户名</th>
@@ -39,15 +39,15 @@
                     </tr>
                     <tr>
                         <th></th>
-                        <td><input type="button" class="submit-reg" onclick="document.formRegister.submit();" />
-                            <input type="button"  class="reset-login"onclick="document.formRegister.reset();" /></td>
+                        <td><input type="button" id="send" class="submit-reg"/>
+                            <input type="button"  id="res" class="reset-login"/></td>
                     </tr>
                 </table>
             </form>
         </div>
         <!--  end login-inner -->
         <div class="clear"></div>
-        <a href="../index.php" class="forgot-pwd">已有帐号?</a>
+        <a href="../../index.php" class="forgot-pwd">已有帐号?</a>
     </div>
     <!--  end loginbox -->
 </div>

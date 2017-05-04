@@ -50,7 +50,7 @@ require_once '../util/functions.php';
 
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../php/product/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -60,7 +60,7 @@ require_once '../util/functions.php';
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../php/user/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -70,7 +70,7 @@ require_once '../util/functions.php';
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../php/about/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>

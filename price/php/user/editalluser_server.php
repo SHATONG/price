@@ -19,16 +19,28 @@ $email = $_GET['email'];
 $personal = $_GET['personal'];
 
 if (empty($username)){
-    die('用户名不能为空') ;
+    echo "<script> alert(\用户名不能为空哦！\")</script>";
+    $url="allusers.php";
+    echo "<script language=\"javascript\">";
+    echo "location.href=\"$url\"";
+    echo "</script>";
 }
 if (empty($password)){
-    die('密码不能为空') ;
+    echo "<script> alert(\"密码不能为空哦！\")</script>";
+    $url="allusers.php";
+    echo "<script language=\"javascript\">";
+    echo "location.href=\"$url\"";
+    echo "</script>";
 }
 if (empty($email)){
-    die('邮箱不能为空') ;
+    echo "<script> alert(\"邮箱不能为空哦！\")</script>";
+    $url="allusers.php";
+    echo "<script language=\"javascript\">";
+    echo "location.href=\"$url\"";
+    echo "</script>";
 }
 
-require_once '../util/functions.php';
+require_once '../../util/functions.php';
 
 connectDB();
 

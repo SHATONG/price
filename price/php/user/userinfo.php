@@ -1,30 +1,13 @@
 <?php
-require_once '../util/functions.php';
+require_once '../../util/functions.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default"/>
-    <script type="text/javascript" src="../js/jquery-1.4.4.js"></script>
-    <script type="text/javascript" src="../js/user.js"></script>
-    <title>修改用户信息</title>
+    <link rel="stylesheet" href="../../css/screen.css" type="text/css" media="screen" title="default"/>
+    <title>添加监控商品</title>
 </head>
-<?php
-require_once '../util/functions.php';
-
-if (!empty($_GET['id'])) {
-    connectDB();
-    $id = $_GET['id'];
-    $result = mysql_query("SELECT * FROM user WHERE user_id = $id");
-    $arr = mysql_fetch_assoc($result);
-    $name = $arr['user_name'];
-    $password = $arr['user_pwd'];
-    $email = $arr['user_email'];
-} else {
-    die('id未定义');
-}
-?>
 <body>
 <div id="page-top-outer">
 
@@ -33,8 +16,8 @@ if (!empty($_GET['id'])) {
 
         <!-- start logo -->
         <div id="logo">
-            <a href="http://jd.usau-buy.me/"><h1 style="color: #fff; font-size: 35px">欢迎您！<?php session_start();
-                    echo $_SESSION['name'] ?></h1></a>
+            <h1 style="color: #fff; font-size: 35px">欢迎您！<?php session_start();
+                    echo $_SESSION['name'] ?></h1>
         </div>
 
         <div class="clear"></div>
@@ -49,17 +32,18 @@ if (!empty($_GET['id'])) {
         <!-- start nav-right -->
         <div id="nav-right">
             <div class="nav-divider">&nbsp;</div>
-            <a href="../index.php" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64" height="14"
-                                                     alt=""/></a>
+            <a href="../../index.php" id="logout"><img src="../../images/shared/nav/nav_logout.gif" width="64" height="14"
+                                                       alt=""/></a>
             <div class="nav-divider">&nbsp;</div>
             <div class="clear">&nbsp;</div>
         </div>
         <!-- end nav-right -->
         <div class="nav">
             <div class="table">
+
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/price.php"><b>价格监控</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../monitor/price.php"><b>价格监控</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -70,7 +54,7 @@ if (!empty($_GET['id'])) {
 
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../product/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -80,7 +64,7 @@ if (!empty($_GET['id'])) {
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -90,7 +74,7 @@ if (!empty($_GET['id'])) {
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../about/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -111,77 +95,74 @@ if (!empty($_GET['id'])) {
 <div id="content-outer">
     <!-- start content -->
     <div id="content">
-        <form action="edituser_server.php" method="GET" name="formEdit" >
             <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
                 <tr>
-                    <th rowspan="3" class="sized"><img src="../images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+                    <th rowspan="3" class="sized"><img src="../../images/shared/side_shadowleft.jpg" width="20"
+                                                       height="300"
+                                                       alt=""/></th>
                     <th class="topleft"></th>
                     <td id="tbl-border-top">&nbsp;</td>
                     <th class="topright"></th>
-                    <th rowspan="3" class="sized"><img src="../images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+                    <th rowspan="3" class="sized"><img src="../../images/shared/side_shadowright.jpg" width="20"
+                                                       height="300"
+                                                       alt=""/></th>
                 </tr>
                 <tr>
                     <td id="tbl-border-left"></td>
                     <td>
                         <!--  start content-table-inner -->
                         <div id="content-table-inner">
+
                             <table border="0" width="100%" cellpadding="0" cellspacing="0">
                                 <tr valign="top">
                                     <td>
                                         <!--  start step-holder -->
                                         <div id="step-holder">
                                             <div class="step-no">★</div>
-                                            <div class="step-dark-left"><a href="">修改用户信息</a></div>
+                                            <div class="step-dark-left"><a href="">个人信息</a></div>
                                             <div class="clear"></div>
                                         </div>
                                         <!--  end step-holder -->
                                         <!-- start id-form -->
-                                        <?php $id = $_GET['id'];
+                                        <?php
+                                        $id1 = $_SESSION['id'];
                                         connectDB();
-                                        $result = mysql_query("SELECT * FROM monitor where id = $id");
-                                        $data_count = mysql_num_rows($result);
-                                        for ($i = 0; $i < $data_count; $i++) {
-                                            $result_arr = mysql_fetch_assoc($result);
-                                            $id = $result_arr['id'];
-                                            $item_id = $result_arr['item_id'];
-                                            $item_name = $result_arr['item_name'];
-                                            $mall_name = $result_arr['mall_name'];
-                                            $item_price = $result_arr['item_price'];
-                                            $user_id = $result_arr['user_id'];
-                                            $user_price = $result_arr['user_price'];
-                                        }
+                                        $result = mysql_query("SELECT * FROM user WHERE user_id = $id1;");
+                                        $result_arr = mysql_fetch_assoc($result);
+                                        $id = $result_arr['user_id'];
+                                        $name = $result_arr['user_name'];
+                                        $pw = $result_arr['user_pwd'];
+                                        $email = $result_arr['user_email'];
                                         ?>
-                                        <table border="0" cellpadding="0" cellspacing="0"  id="id-form">
+                                        <table border="0" cellpadding="0" cellspacing="0" id="id-form">
                                             <tr>
                                                 <th valign="top">ID:</th>
-                                                <td><input type="text" class="inp-form" name="id" value="<?php echo $id ?>" readonly></td>
+                                                <td><?php echo $id; ?></td>
+                                                <td>
 
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th valign="top">用户名:</th>
-                                                <td><input type="text" class="inp-form" name="username" id="name" value="<?php echo $name ?>"></td>
+                                                <td><?php echo $name; ?></td>
                                                 <td>
-                                                    <input type="hidden"  name="id" value="<?php echo $id;?>"/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th valign="top">密码:</th>
-                                                <td><input type="text" class="inp-form" name="password" id="password" value="<?php echo $password ?>"></td>
+                                                <td><?php echo $pw; ?></td>
                                                 <td></td>
                                             </tr>
 
                                             <tr>
                                                 <th valign="top">邮箱:</th>
-                                                <td><input type="text" class="inp-form" name="email" id="email" value="<?php echo $email ?>"></td>
+                                                <td><?php echo $email; ?></td>
                                                 <td></td>
                                             </tr>
-                                            <tr>
-                                                <th>&nbsp;</th>
-                                                <td valign="top">
-                                                    <input type="button" value="" class="form-submit" onclick="document.formEdit.submit();"/>
-                                                    <input type="reset" value="" class="form-reset"  />
-                                                </td>
-                                                <td></td>
+                                            <tr>              
+												 <th valign="top"></th>
+												<td>
+													<input type="button"  class="form-edit" onclick="location.href='edituser.php?id=<?php echo $id;?>'"/>
                                             </tr>
                                         </table>
                                         <!-- end id-form  -->
@@ -191,23 +172,29 @@ if (!empty($_GET['id'])) {
                                         <div id="related-activities">
                                             <!--  start related-act-top -->
                                             <div id="related-act-top">
-                                                <img src="../images/forms/header_related_act.gif" width="271" height="43" alt="" />
+                                                <img src="../../images/forms/header_related_act.gif" width="271"
+                                                     height="43"
+                                                     alt=""/>
                                             </div>
                                             <!-- end related-act-top -->
                                             <!--  start related-act-bottom -->
                                             <div id="related-act-bottom">
                                                 <!--  start related-act-inner -->
                                                 <div id="related-act-inner">
-                                                    <div class="lines-dotted-short"></div>
-                                                    <div class="left"><a href=""><img src="../images/forms/icon_edit.gif" width="21" height="21" alt="" /></a></div>
-                                                    <div class="right">
-                                                        <h5>个人信息修改</h5>
-                                                        此页面修改你的个人信息，用户名和密码都不少于6位数哦！
-                                                        <ul class="greyarrow">
 
+                                                    <div class="lines-dotted-short"></div>
+                                                    <div class="left"><a href=""><img
+                                                                    src="../../images/forms/icon_edit.gif"
+                                                                    width="21" height="21" alt=""/></a>
+                                                    </div>
+                                                    <div class="right">
+                                                        <h4>备注</h4>
+                                                        <div style="height: 15px"></div>
+                                                        请填写正确的邮箱地址，防止收不到提醒邮件！
+                                                        <ul class="greyarrow">
+                                                            <li><a href=""></a></li>
                                                         </ul>
                                                     </div>
-                                                    <div class="clear"></div>
                                                 </div>
                                                 <!-- end related-act-inner -->
                                                 <div class="clear"></div>
@@ -231,7 +218,6 @@ if (!empty($_GET['id'])) {
                 </tr>
             </table>
             <div class="clear">&nbsp;</div>
-
     </div>
     <!--  end content -->
     <div class="clear">&nbsp;</div>
@@ -242,7 +228,7 @@ if (!empty($_GET['id'])) {
 <div id="footer">
     <!--  start footer-left -->
     <div id="footer-left">
-        &copy; Copyright BY ShaTong. <span id="spanYear"></span> <a href="http://jd.usau-buy.me/"></a>. All rights
+        &copy Copyright By ShaTong, Zhendong Yang <span id="spanYear"></span>. All rights
         reserved.
     </div>
     <!--  end footer-left -->
@@ -250,3 +236,4 @@ if (!empty($_GET['id'])) {
 </div>
 </body>
 </html>
+

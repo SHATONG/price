@@ -62,7 +62,7 @@ $(function() {
 				 * onSuccess">' + okMsg + '</span>'); } }
 				 */
 				// 验证电话
-				if ($(this).is('#telephone')) {
+				/* if ($(this).is('#telephone')) {
 					if (this.value == "" || this.value != ""
 							&& !/^1(3|5|7|8|9)\d{9}$/.test(this.value)) {
 						var errorMsg = '请输入11位正确号码';
@@ -73,7 +73,7 @@ $(function() {
 						$parent.append('<span class="formtips onSuccess">'
 								+ okMsg + '</span>');
 					}
-				}
+				} */
 				// 验证邮件
 				if ($(this).is('#email')) {
 					if (this.value == ""
@@ -113,13 +113,16 @@ $(function() {
 						var numError = $('form .onError').length;
 						if (numError) {
 							return false;
+						}else{
+							document.getElementById("formRegister").submit();    					
+							//alert("恭喜你，注册成功!");
 						}
-						alert("恭喜你，注册成功!");
+						
 					});
 
 			// 重置
 			$('#res').click(function() {
-
+						document.getElementById("formRegister").reset(); 
 						$(".formtips").remove();
 					});
 		})
@@ -168,33 +171,6 @@ function check() {
 	}
 }
 
-// 页面返回
-
-$(document).ready(function() {
-	$("#sbm").click(function() {// 提交修改确认
-				if (confirm("你确定要修改吗？")) {
-					location.href = "/jquery-validateLogin/pages/updateSuccess.jsp";
-					return true;
-				} else {
-					return false;
-				}
-
-			});
-	$("#goback").click(function() {// 返回前一页
-				self.location = document.referrer;
-			});
-
-	$("#register").click(function() {// 注册页面跳转
-				location.href = "/jquery-validateLogin/pages/register.jsp";
-			})
-	$("#container").PageSwitch({// 图片轮播
-		direction : 'horizontal',
-		easing : 'ease-in',
-		duration : 1000,
-		autoPlay : true,
-		loop : 'true'
-	});
-});
 
 function getLangDate() {
 	var dateObj = new Date(); // 表示当前系统时间的Date对象
@@ -229,24 +205,17 @@ function getLangDate() {
 	setTimeout("getLangDate()", 1000);// 每隔1秒重新调用一次该函数
 }
 
-var speed = 40
-window.onload = function() {
-	var demo = document.getElementById("demo");
-	var demo2 = document.getElementById("demo2");
-	var demo1 = document.getElementById("demo1");
-	demo2.innerHTML = demo1.innerHTML
-	function Marquee() {
-		if (demo.scrollTop >= demo1.offsetHeight) {
-			demo.scrollTop = 0;
-		} else {
-			demo.scrollTop = demo.scrollTop + 1;
-		}
-	}
-	var MyMar = setInterval(Marquee, speed)
-	demo.onmouseover = function() {
-		clearInterval(MyMar)
-	}
-	demo.onmouseout = function() {
-		MyMar = setInterval(Marquee, speed)
-	}
-}
+//找回用户名
+
+    // $('#forgetPwdButton').click(function() {
+    //     if ($('#find_name').val()==''){
+    //         alert('找回密码需输入你的用户名哦！');
+    //         return false;
+    //     }
+    //     if ($('#find_email').val()==''){
+    //         alert('找回密码需输入你的邮箱哦！');
+    //         return false;
+    //     }
+    //     document.getElementById("forgetPwdForm").submit();
+    // });
+

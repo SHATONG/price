@@ -7,10 +7,14 @@
  */
 
 if(empty($_GET['id'])){
-    die('id is empty');
+    echo "<script> alert(\"ID不能为空哦！\")</script>";
+    $url="allusers.php";
+    echo "<script language=\"javascript\">";
+    echo "location.href=\"$url\"";
+    echo "</script>";
 }
 
-require_once '../util/functions.php';
+require_once '../../util/functions.php';
 
 connectDB();
 
@@ -21,5 +25,5 @@ mysql_query("DELETE FROM user WHERE user_id = $id");
 if (mysql_errno()){
     die("delete failed");
 }else{
-    header("Location:../php/allusers.php");
+    header("Location:allusers.php");
 }

@@ -13,9 +13,13 @@ $mall_name = $_GET['mall_name'];
 $status = $_GET['status'];
 $user_price = $_GET['user_price'];
 if (empty($item_id)) {
-    die('商品ID不能为空');
+    echo "<script> alert(\"商品ID不能为空！\")</script>";
+    $url="../product/editProduct.php";
+    echo "<script language=\"javascript\">";
+    echo "location.href=\"$url\"";
+    echo "</script>";
 }
-require_once '../util/functions.php';
+require_once '../../util/functions.php';
 connectDB();
 
 mysql_query("UPDATE monitor SET item_id = '$item_id',mall_name = '$mall_name',user_price = '$user_price',STATUS = $status,user_id = '$user_id' WHERE id = $id");
@@ -24,5 +28,5 @@ if (mysql_errno()) {
 } else {
     session_start();
     $_SESSION['user_id'] = $user_id;
-    header("Location:../php/price.php");
+    header("Location:../monitor/price.php");
 }

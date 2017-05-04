@@ -1,5 +1,5 @@
 <?php
-require_once '../util/functions.php';
+require_once '../../util/functions.php';
 session_start();
 $user_id = $_SESSION['id'];
 connectDB();
@@ -15,7 +15,7 @@ connectDB();
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/screen.css" type="text/css" media="screen" title="default"/>
+    <link rel="stylesheet" href="../../css/screen.css" type="text/css" media="screen" title="default"/>
     <title>价格监控</title>
 </head>
 <body>
@@ -37,7 +37,7 @@ connectDB();
         <!-- start nav-right -->
         <div id="nav-right">
             <div class="nav-divider">&nbsp;</div>
-            <a href="../index.php" id="logout"><img src="../images/shared/nav/nav_logout.gif" width="64"
+            <a href="../../index.php" id="logout"><img src="../../images/shared/nav/nav_logout.gif" width="64"
                                                      height="14"
                                                      alt=""/></a>
 
@@ -50,7 +50,7 @@ connectDB();
 
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/price.php"><b>价格监控</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../monitor/price.php"><b>价格监控</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -61,7 +61,7 @@ connectDB();
 
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../product/addProduct.php"><b>添加商品</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -71,7 +71,7 @@ connectDB();
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../user/userinfo.php"><b>个人信息</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -81,7 +81,7 @@ connectDB();
                 </ul>
                 <div class="nav-divider">&nbsp;</div>
                 <ul class="select">
-                    <li><a href="../php/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                    <li><a href="../about/about.php"><b>关于</b><!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]>
                         <table>
                             <tr>
@@ -90,11 +90,10 @@ connectDB();
                     </li>
                 </ul>
                 <?php
-                
                 if ($user_id == 1 || $user_id == 2) {
                     echo '<div class="nav-divider">&nbsp;</div>
                     <ul class="select">
-                        <li><a href="allusers.php"><b>用户管理</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                        <li><a href="../user/allusers.php"><b>用户管理</b><!--[if IE 7]><!--></a><!--<![endif]-->
                             <!--[if lte IE 6]>
                             <table>
                                 <tr>
@@ -104,7 +103,7 @@ connectDB();
                     </ul>
                     <div class="nav-divider">&nbsp;</div>
                     <ul class="select">
-                        <li><a href="allproducts.php"><b>商品管理</b><!--[if IE 7]><!--></a><!--<![endif]-->
+                        <li><a href="../product/allproducts.php"><b>商品管理</b><!--[if IE 7]><!--></a><!--<![endif]-->
                             <!--[if lte IE 6]>
                             <table>
                                 <tr>
@@ -133,13 +132,13 @@ connectDB();
                 <td></td>
             </tr>
             <tr>
-                <th rowspan="3" class="sized"><img src="../images/shared/side_shadowleft.jpg" width="20"
+                <th rowspan="3" class="sized"><img src="../../images/shared/side_shadowleft.jpg" width="20"
                                                    height="300"
                                                    alt=""/></th>
                 <th class="topleft"></th>
                 <td id="tbl-border-top">&nbsp;</td>
                 <th class="topright"></th>
-                <th rowspan="3" class="sized"><img src="../images/shared/side_shadowright.jpg" width="20"
+                <th rowspan="3" class="sized"><img src="../../images/shared/side_shadowright.jpg" width="20"
                                                    height="300"
                                                    alt=""/></th>
             </tr>
@@ -180,9 +179,9 @@ connectDB();
 											$status == 0?($statusCode =  '<span style="color: red">尚未监控</span>'):($statusCode = '<span style="color: green">正在监控</span>');
 											$user_price = $result_arr['user_price'];
 											echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
-												  <td><a href='editProduct.php?id=$id'>修改</a>
-												  |<a href='deleteProduct.php?id=$id'>删除</a></td><td>$note</td>
-												  <td><a href=\"switch.php?status=1&&id=$id\" class=\"icon-5 info-tooltip\"></a><a href=\"switch.php?status=0&&id=$id\" class=\"icon-2 info-tooltip\"></a></td></tr>";
+												  <td><a href='../product/editProduct.php?id=$id'>修改</a>
+												  |<a href='../product/deleteProduct.php?id=$id'>删除</a></td><td>$note</td>
+												  <td><a href=\"../product/monitorSwitch.php?status=1&&id=$id\" class=\"icon-5 info-tooltip\"></a><a href=\"../product/monitorSwitch.php?status=0&&id=$id\" class=\"icon-2 info-tooltip\"></a></td></tr>";
 										}
 									}
                                     ?>
