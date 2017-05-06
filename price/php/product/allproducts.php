@@ -96,7 +96,7 @@ require_once '../../util/functions.php';
 <div id="content-outer">
     <!-- start content -->
     <div id="content">
-        <h1 style="color: #1a1a1a; padding: 10px 0 20px 20px; font-size: 25px">所有商品信息</h1>
+        <h1 style="color: #1a1a1a; padding: 10px 0 20px 20px; font-size: 25px">所有商品信息</h1><h3><a href="deleteAllProduct.php">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除所有商品（谨慎操作！）</a></h3>
         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
             <tr>
                 <td></td>
@@ -129,9 +129,9 @@ require_once '../../util/functions.php';
                                         <th class="table-header-repeat line-left minwidth-1">商品价格</th>
                                         <th class="table-header-repeat line-left minwidth-1">预期价格</th>
                                         <th class="table-header-repeat line-left minwidth-1">监控状态</th>
-                                        <th class="table-header-repeat line-left minwidth-1">监控管理</th>
                                         <th class="table-header-repeat line-left minwidth-1">监控用户</th>
-                                        <th class="table-header-repeat line-left minwidth-1">备注</th>
+                                        <th class="table-header-repeat line-left minwidth-1">添加时间</th>
+                                        <th class="table-header-repeat line-left minwidth-1">监控管理</th>
                                         <th class="table-header-repeat line-left minwidth-1">监控开关</th>
                                     </tr>
                                     <?php
@@ -155,6 +155,7 @@ require_once '../../util/functions.php';
                                         }
                                         $item_price = $result_arr['item_price'];
                                         $user_id = $result_arr['user_id'];
+                                        $add_date = $result_arr['add_date'];
                                         $user_result = mysql_query("SELECT * FROM user WHERE user_id = $user_id");
                                         $user_result_arr = mysql_fetch_assoc($user_result);
                                         $user_name = $user_result_arr['user_name'];
@@ -163,8 +164,8 @@ require_once '../../util/functions.php';
                                         $status == 0 ? ($statusCode = '<span style="color: red">尚未监控</span>') : ($statusCode = '<span style="color: green">正在监控</span>');
                                         $user_price = $result_arr['user_price'];
                                         echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name_ven</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
-                                              <td><a href='editProduct.php?id=$id&&edit_auth=1'>修改</a>
-                                              |<a href='deleteProduct.php?id=$id&&delete_auth=1'>删除</a></td><td>$user_name</td><td>$note</td>
+                                              <td>$user_name</td><td>$add_date</td><td><a href='editProduct.php?id=$id&&edit_auth=1'>修改</a>
+                                              |<a href='deleteProduct.php?id=$id&&delete_auth=1'>删除</a></td>
                                               <td><a href=\"../product/monitorSwitch.php?status=1&&id=$id&&auth=1\" class=\"icon-5 info-tooltip\"></a><a href=\"../product/monitorSwitch.php?status=0&&id=$id&&auth=1\" class=\"icon-2 info-tooltip\"></a></td></tr>";
                                     }
                                     ?>
