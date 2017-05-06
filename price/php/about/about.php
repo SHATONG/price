@@ -117,7 +117,7 @@ require_once '../../util/functions.php';
                         <!--  start table-content  -->
                         <div id="table-content">
                             <h3>系统介绍</h3>
-                            本系统基于php和python开发，目前为v0.1(beta)版本！目前只支持京东商城！
+                            本系统基于php和python开发，目前为v1.1(beta)版本！目前只支持京东商城和淘宝，后续还会支持更多平台！
                         </div>
                         <!--  end table-content  -->
 

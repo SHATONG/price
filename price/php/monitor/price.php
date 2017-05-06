@@ -172,15 +172,24 @@ connectDB();
 											$item_id = $result_arr['item_id'];
 											$item_name = $result_arr['item_name'];
 											$mall_name = $result_arr['mall_name'];
+											if ($mall_name=='jd'){
+											    $mall_name_ven='京东';
+                                            }elseif ($mall_name=='tb'){
+                                                $mall_name_ven='淘宝';
+                                            }elseif($mall_name=='tm'){
+                                                $mall_name_ven='天猫';
+                                            }else{
+                                                $mall_name_ven=$mall_name;
+                                            }
 											$item_price = $result_arr['item_price'];
 											$user_id = $result_arr['user_id'];
 											$status = $result_arr['status'];
 											$note = $result_arr['note'];
 											$status == 0?($statusCode =  '<span style="color: red">尚未监控</span>'):($statusCode = '<span style="color: green">正在监控</span>');
 											$user_price = $result_arr['user_price'];
-											echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
-												  <td><a href='../product/editProduct.php?id=$id'>修改</a>
-												  |<a href='../product/deleteProduct.php?id=$id'>删除</a></td><td>$note</td>
+											echo "<tr><td>$item_id</td><td><a href='https://item.jd.com/$item_id.html'>$item_name</a></td><td>$mall_name_ven</td><td>$item_price</td><td>$user_price</td><td>$statusCode</td>
+												  <td><a href='../product/editProduct.php?id=$id&&edit_auth=0'>修改</a>
+												  |<a href='../product/deleteProduct.php?id=$id&&delete_auth=0'>删除</a></td><td>$note</td>
 												  <td><a href=\"../product/monitorSwitch.php?status=1&&id=$id\" class=\"icon-5 info-tooltip\"></a><a href=\"../product/monitorSwitch.php?status=0&&id=$id\" class=\"icon-2 info-tooltip\"></a></td></tr>";
 										}
 									}
