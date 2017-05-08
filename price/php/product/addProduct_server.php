@@ -5,6 +5,7 @@
  * Date: 2017/04/26
  * Time: 14:28
  */
+header("Content-type: text/html; charset=utf-8");
 session_start();
 $user_id =  $_SESSION['id'];
 $item_id = $_GET['item_id'];

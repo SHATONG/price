@@ -33,8 +33,8 @@ require_once '../../util/functions.php';
         <div id="nav-right">
             <div class="nav-divider">&nbsp;</div>
             <a href="../../index.php" id="logout"><img src="../../images/shared/nav/nav_logout.gif" width="64"
-                                                     height="14"
-                                                     alt=""/></a>
+                                                       height="14"
+                                                       alt=""/></a>
             <div class="nav-divider">&nbsp;</div>
             <div class="clear">&nbsp;</div>
         </div>
@@ -130,19 +130,24 @@ require_once '../../util/functions.php';
                                         <th class="table-header-repeat line-left minwidth-1">操作</th>
                                     </tr>
                                     <?php
-                                    connectDB();
-                                    $result = mysql_query("SELECT * FROM user");
-                                    $data_count = mysql_num_rows($result);
-                                    for ($i = 0; $i < $data_count; $i++) {
-                                        $result_arr = mysql_fetch_assoc($result);
-                                        $id = $result_arr['user_id'];
-                                        $name = $result_arr['user_name'];
-                                        $pw = $result_arr['user_pwd'];
-                                        $email = $result_arr['user_email'];
-                                        $register_date = $result_arr['register_date'];
-                                        echo "<tr><td>$id</td><td>$name</td><td>$pw</td><td>$email</td><td>$register_date</td>
-                          <td><a href='editalluser.php?id=$id'>修改</a>
-                          |<a href='deleteuser.php?id=$id'>删除</a></td></tr>";
+                                    $user_id_admin = $_SESSION['id'];
+                                    if ($user_id_admin == 1 || $user_id_admin == 2) {
+                                        connectDB();
+                                        $result = mysql_query("SELECT * FROM user");
+                                        $data_count = mysql_num_rows($result);
+                                        for ($i = 0; $i < $data_count; $i++) {
+                                            $result_arr = mysql_fetch_assoc($result);
+                                            $id = $result_arr['user_id'];
+                                            $name = $result_arr['user_name'];
+                                            $pw = $result_arr['user_pwd'];
+                                            $email = $result_arr['user_email'];
+                                            $register_date = $result_arr['register_date'];
+                                            echo "<tr><td>$id</td><td>$name</td><td>$pw</td><td>$email</td><td>$register_date</td>
+                                                    <td><a href='editalluser.php?id=$id'>修改</a>
+                                                    |<a href='deleteuser.php?id=$id'>删除</a></td></tr>";
+                                        }
+                                    }else{
+                                        echo '<tr><td colspan="6" style="color: red;font-size: 20px;text-align: center"> 你的访问权限不够,如果有疑问，请联系管理员！</td></tr>';
                                     }
                                     ?>
                                 </table>
